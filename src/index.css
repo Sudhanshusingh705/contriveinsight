@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium IP Firm Design System */
+
+@layer base {
+  :root {
+    /* Core brand colors */
+    --background: 0 0% 100%;
+    --foreground: 150 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 150 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 20% 15%;
+
+    /* Primary - light green accent */
+    --primary: 142 45% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - soft green */
+    --secondary: 138 40% 95%;
+    --secondary-foreground: 150 20% 15%;
+
+    --muted: 140 25% 92%;
+    --muted-foreground: 150 15% 35%;
+
+    --accent: 142 45% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 140 25% 88%;
+    --input: 140 25% 92%;
+    --ring: 142 45% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(142 45% 60%) 0%, hsl(142 35% 75%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(138 40% 97%) 100%);
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(138 40% 95%) 0%, hsl(0 0% 100%) 70%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(138 40% 98%) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(142 45% 60% / 0.16) 0%, transparent 70%);
+
+    --shadow-sm: 0 2px 8px -2px hsl(142 20% 40% / 0.12);
+    --shadow-md: 0 8px 24px -8px hsl(142 20% 40% / 0.16);
+    --shadow-lg: 0 16px 48px -12px hsl(142 20% 40% / 0.2);
+    --shadow-glow: 0 0 40px -10px hsl(142 45% 60% / 0.22);
+
+    /* Glass effect */
+    --glass-bg: hsl(0 0% 100% / 0.8);
+    --glass-border: hsl(140 25% 88% / 0.9);
+
+    /* Sidebar (kept for compatibility) */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 150 20% 15%;
+    --sidebar-primary: 142 45% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 138 40% 95%;
+    --sidebar-accent-foreground: 150 20% 15%;
+    --sidebar-border: 140 25% 88%;
+    --sidebar-ring: 142 45% 60%;
+  }
+
+  .dark {
+    --background: 0 0% 100%;
+    --foreground: 150 20% 15%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  img,
+  svg {
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  /* Glow effect */
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Animated underline for links */
+  .animated-underline {
+    @apply relative;
+  }
+  
+  .animated-underline::after {
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+    content: '';
+  }
+  
+  .animated-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Section styling */
+  .section-padding {
+    @apply py-16 sm:py-20 md:py-28 lg:py-32;
+  }
+
+  /* Premium button hover */
+  .btn-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-glow::before {
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    content: '';
+    background: linear-gradient(135deg, hsl(174 72% 50% / 0.2) 0%, transparent 50%);
+  }
+
+  .btn-glow:hover::before {
+    @apply opacity-100;
+  }
+}
+
+@layer utilities {
+  /* Animation delays */
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--secondary));
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+
+  .break-email {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
